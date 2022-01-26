@@ -1,12 +1,14 @@
 # GitRank: A Framework to Rank Open-source Repositories
 
-GitRank is a Python-based framework to rank open-source repositories on quality, maintainability, and popularity metrics. It considers a number of source code metrics such as code formatting issues, security issues, GitHub stars, watches and forks, etc., to obtain a score for every repository. Repository's score is then used to rank a list of repositories.
+GitRank is a Python-based framework to rank open-source repositories on quality, maintainability, and popularity metrics. It considers a number of source code metrics such as code formatting issues, security issues, GitHub stars, watches and forks, etc., to obtain a score for every repository. Given a list of repositories, the scores of all the repositories are then used to rank them.
 
 The framework is developed as a part of [MSR'22 hackathon](https://conf.researchr.org/track/msr-2022/msrhackathon2022) by team MPR from Intel Labs.
 
 # Install
 
 ```
+$ git clone https://github.com/nirhasabnis/gitrank
+$ cd gitrank
 $ pip3 install -r base_requirements.txt
 $ pip3 uninstall lizard
 $ pip3 install -r lizard_requirements.txt
@@ -74,8 +76,8 @@ me-no-dev_ESPAsyncTCP,https://github.com/me-no-dev/ESPAsyncTCP,58.57,56.79,57.04
 Usage of `rank_repos.py` is as follows:
 ```
 $ python3 src/rank_repos.py 
-usage: rank_repos_v2.py [-h] -c CSV_FILE -o OUTPUT_CSV_FILE [-d]
-rank_repos_v2.py: error: the following arguments are required: -c/--csv_file, -o/--output_csv_file
+usage: rank_repos.py [-h] -c CSV_FILE -o OUTPUT_CSV_FILE [-d]
+rank_repos.py: error: the following arguments are required: -c/--csv_file, -o/--output_csv_file
 ```
 
 ### Producing HTML output from CSV
