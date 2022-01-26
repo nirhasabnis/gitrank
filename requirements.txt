@@ -1,0 +1,4 @@
+grimoirelab>=0.2.67
+scancode-toolkit==30.1.0
+flawfinder==2.0.19
+lizard==1.17.9
