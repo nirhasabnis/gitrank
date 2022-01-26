@@ -49,12 +49,14 @@ function get_metadata_of_single_repo() {
   token=$2
   output_csv=$3
   tmp_dir_to_clone_repo=`mktemp -d`
-  echo "Using " ${tmp_dir_to_clone_repo} " for " ${repo_url}
-  python3 ${CURRENT_DIR}/get_metadata_of_single_repo.py -r ${repo_url} -t ${token} -d ${tmp_dir_to_clone_repo} -p >> ${output_csv}
+  python3 ${CURRENT_DIR}/../src/get_metadata_of_single_repo.py -r ${repo_url} -t ${token} -d ${tmp_dir_to_clone_repo} -p >> ${output_csv}
   rm -rf ${tmp_dir_to_clone_repo}
 }
 export -f get_metadata_of_single_repo
 export CURRENT_DIR
+
+# Generate CSV header using a repo
+python3 src/get_metadata_of_single_repo.py -t ${TOKEN} -r https://github.com/nirhasabnis/gitrank -d `mktemp -d` | head -n 1 > ${OUTPUT_CSV_FILE}
 
 if ! command -v parallel &> /dev/null
 then
@@ -67,7 +69,6 @@ then
 else
   echo "GNU Parallel exists. Invoking parallel dump.."
   TMP_DIR=`mktemp -d`
-  echo "Storing logs in:" ${TMP_DIR}
 
   cat ${GIT_URL_FILE} | parallel --eta --bar --progress \
     -I% -j${NUM_PROCS} get_metadata_of_single_repo % ${TOKEN} ${TMP_DIR}/proc_{%}.csv
