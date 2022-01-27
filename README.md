@@ -30,6 +30,11 @@ Python <version>
 ...
 ```
 
+If any of the commands fail, check `PATH` variable. Depending on where these packages are installed, you may need to set it as:
+```
+export PATH=$PATH:/home/<user>/.local/bin
+```
+
 # Usage
 
 GitRank accepts a list of repository URLs as input.
